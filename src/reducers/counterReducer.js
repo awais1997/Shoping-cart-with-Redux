@@ -21,28 +21,28 @@ const initialState = {
 const counterReducer = (state = initialState, action) => {
   switch (action.type) {
     case "INCREMENT": {
-      debugger;
       const index = action.payload;
-      const Icounters = [...state.counters];
-      Icounters[index].value = Icounters[index].value + 1;
+      const counters = [...state.counters];
+      counters[index].value = counters[index].value + 1;
       return {
-        counters: [...Icounters],
+        counters: [...counters],
       };
     }
-    case "DELETE":
-      const Index = action.payload;
-      console.log(Index);
-      const Dcounters = [...state.counters];
-      const DeleteCounter = Dcounters.filter((counter, index) => {
-        return index !== Index;
+    case "DELETE": {
+      const i = action.payload;
+      console.log(i);
+      const counters = [...state.counters];
+      const DeleteCounter = counters.filter((counter, index) => {
+        return index !== i;
       });
       console.log(DeleteCounter);
       return {
         counters: [...DeleteCounter],
       };
-    case "RESET":
-      const Rcounters = [...state.counters];
-      const ResetCounters = Rcounters?.map((item) => {
+    }
+    case "RESET": {
+      const counters = [...state.counters];
+      const ResetCounters = counters?.map((item) => {
         item.value = 0;
         return item;
       });
@@ -50,6 +50,7 @@ const counterReducer = (state = initialState, action) => {
       return {
         counters: [...ResetCounters],
       };
+    }
     default:
       return state;
   }
